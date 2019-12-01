@@ -1,0 +1,222 @@
+
+body{
+    width: 1000px;
+    position: relative;
+    left: 50%;
+    margin-left: -500px;
+    background-color: #999999;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+a, .ui-widget-content a{
+    color: blue;
+}
+
+#headline img{
+    margin: 10px;
+}
+  
+
+#headline{
+    text-align:center;
+/*    background:url(../images/freme-logo.png) no-repeat white left center;*/
+}
+
+.box{
+    border:1px solid #d3d3d3;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: white;
+    margin-bottom: 20px;
+ 
+}
+
+textarea{
+    border: 1px solid #d3d3d3;
+}
+
+.freme-widget{
+    background-color: #fff4aa;
+    padding: 20px;
+    border:1px solid black;
+    border-radius: 5px;
+}
+
+.freme-widget pre{
+    background-color: #fffadc;
+    padding: 5px;
+}
+
+table.parameter-table{
+    background-color: #fffadc;
+}
+
+#dialog {
+    white-space: pre;
+}
+#clipBoard {
+    white-space: pre;
+}
+#clipBoard2 {
+    white-space: pre;
+}
+.result-div pre{
+    overflow:auto;
+}
+
+#workflow-definition{
+    width: 920px;
+    height: 300px;
+}
+
+.tryitout{
+    margin-top:40px;
+}
+
+.tryitout textarea{
+    width: 920px;
+    height: 300px;
+}
+
+.tryitout .result{
+    overflow: auto;
+}
+
+.tryitout tr.odd{
+    background-color: white;
+}
+
+.tryitout .response{
+    border:1px solid #999999;
+    margin:10px;
+    padding:10px;
+    background-color: #eeeeee;
+}
+
+.hwt-content mark{
+    background-color: #ff948c;
+}
+
+.error_message{
+    margin:20px;
+    padding:20px;
+    background-color:  #ff948c;
+    display: none;
+}
+button{
+    margin:20px 20px 20px 0;
+    padding:5px;
+    display: inline-block;
+    font-size: 1em;
+}
+
+ img {
+  display: inline-block;
+  margin-left: 10px;
+}
+ /* Popup container */
+.popup {
+  position: absolute;
+  display: inline-block;
+  cursor: pointer;
+  align-self: center;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+  visibility: hidden;
+  width: 400px;
+  background-color: rgb(93, 201, 31);
+  color: #fff;
+  align-self: center;
+  left:500px;
+  top: 80px;
+  border-radius: 6px;
+  padding: 30px;
+  position: absolute;
+  z-index: 1;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+} 
+/* widget for dialog window*/
+.ui-widget-header,.ui-state-default, ui-button {
+    background:#b9cd6d;
+    border: 1px solid #b9cd6d;
+    color: #FFFFFF;
+    font-weight: bold;
+    
+ }
+ .ui-dialog {
+    /* color: rgb(141, 38, 38); */
+    font-family: monospace;
+    /* font-family: 'Orbitron', sans-serif; */
+    font-size: 14px;
+    max-width: 100%;
+}
+
+
+ #tab-help li{
+     margin-bottom:6px;
+ }
+
+ #tab-help h3{
+     margin-top:40px;
+}
+
+img.info{
+    width: 18px;
+}
+
+#tab-csvfilter ul{
+    margin: 0;
+    padding: 0;
+}
+
+#tab-csvfilter li{
+    margin-bottom:10px;
+    list-style-type: none;
+}
+
+ul.nobullets{
+    padding: 0;
+    margin: 0;
+}
+
+.nobullets li{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+pre{
+    background-color: #eeeeee;
+    padding: 20px;
+}

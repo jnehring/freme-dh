@@ -1,0 +1,258 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FREME for Digital Humanities</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    <script src="assets/js/ext/papaparse.min.js"></script>
+    <script src="assets/js/ext/jquery.highlight-within-textarea.js"></script>
+    <link rel="stylesheet" href="assets/js/ext/jquery.highlight-within-textarea.css">
+
+    <link rel="stylesheet" href="assets/main.css">
+    <script src="assets/js/select-workflow.js"></script>
+    <script src="assets/js/tryitout.js"></script>
+    <script src="assets/js/workflow-executor.js"></script>
+    <script src="assets/js/sparqlfilter.js"></script>
+    <script src="assets/js/tools.js"></script>
+    <script src="assets/js/filer.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet">
+
+<script type="text/javascript">
+
+    var baseUrl = "http://localhost:8080";
+    $(document).ready(function(){
+            $("#select-workflow").select_workflow();
+            $(".tryitout").tryitout();
+            $(".maintabs").tabs();
+            $(".sparqlfilter").sparqlfilter();
+            $(".tools").tools();
+            $(".filer").filer();
+            $( document ).tooltip();
+            
+            $("#workflow-definition").highlightWithinTextarea({
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="headline" class="box"><img src="../images/freme-logo.png"></div>
+        <div class="maintabs box">
+            <ul>
+                <li><a href="#tab-workflow">Workflow</a></li>
+                <li><a href="#tab-file">File</a></li>
+                <li><a href="#tab-csvfilter">CSV conversion</a></li>
+                <li><a href="#tab-help">Help</a></li>
+            </ul>
+        <div id="tab-workflow">
+        <div id="wflow_title">
+            <h2 style="display:inline-block;margin-right:10px;">Workflow</h2><h5 style="display:inline-block" id='wflow_name'>Untitled</h5>
+                <a href="#" title="Shows the name of the workflow. &quot;Untitled&quot; means that the workflow does not have a name yet."><img class="info" src="images/info.png" /></a>
+            </div>
+                <div id="select-workflow"></div>
+                <p>Please define your workflow here. You can also load a predefined workflow.</p>
+                <textarea id="workflow-definition"></textarea>
+            <div id="error_message" class="error_message"></div>
+
+            <div class="tryitout">
+                <h2>Try it out</h2>
+                <p>You can write an example text here and execute your workflow using this text.</p>
+                <!--        <h2>Input Text</h2>
+                <textarea id="input-text"></textarea><br/><br/>
+                <input type="button" value="Try it out">
+        -->    
+            </div>
+        
+        </div>
+        <div id="tab-csvfilter">
+            <div class="sparqlfilter"></div>
+        </div>
+        <div id="tab-tools">
+            <div class="tools">
+            </div>
+        </div>
+        <div id="tab-file">
+            <div class="filer"></div>
+        </div>
+        <div id="tab-help">
+            <h2>Help</h2>
+
+            <ul class="nobullets">
+                <li><a href="#gs">Getting started</a></li>
+                <li><a href="#wf">Workflows</a></li>
+                <li><a href="#services">Available services</a></li>
+                <li><a href="#csv">CSV Converter</a></li>
+                <li><a href="#links">Links</a></li>
+                <li><a href="#limitations">Known Limitations</a></li>
+            </ul>
+
+            <p>Here is the documentation for FREME for Digital Humanities. It offers easy access to text analytics. It serves for many purposes:</p>
+            <ul>
+                <li>You can use for quick text analytics using all NIF and FREME compatible APIs.
+                     This online user interface can analyse single documents only.</li>
+                <li>FREME-DH supports you when you are a programmer also. You can define and test your workflow in FREME-DH and export it to Python.</li>
+                <li>FREME is designed to let you use Text Analytics without getting in touch with the complicated technical details. But if you want to
+                    go into detail, you can.
+                </li>
+            </ul>
+            <h3 id="gs">Getting Started</h3>
+
+            <ol>
+                <li>Go to the tab <strong>Workflow</strong> and check out the example workflows. You can type a text in the Try it out area and then execute the
+                     workflow on this text.</li>
+                <li>Check out the <strong>CSV conversion</strong> tab. Internally the tool uses a powerful but complex data format called
+                     <a href="https://persistence.uni-leipzig.org/nlp2rdf/" target="_blank">Natural Language Processing Interchange 
+                        Format (NIF)</a>. But in order to use FREME-DH you do not need to know what NIF is. You can send plain text to FREME-DH 
+                        and convert your output to tabular data in the CSV format.<br/>
+                        <italic>CSV conversion templates</italic> convert NIF to CSV. Every template reads different information from NIF and 
+                        therefore produces a different CSV. You can click on a CSV conversion template to insert it in your workflow.
+                </li>
+                <li>The <strong>File</strong> tab offers several tools:
+                    <ul>
+                        <li>Create new workflow</li>
+                        <li>Save Workflow</li>
+                        <li>Python Export</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h3 id="wf">Workflows</h3>
+
+            <p>
+                The FREME-DH workflow format describes API requests to FREME in a simple language. Here is an example of a workflow. This
+                workflow performs Named Entity Recognition in English and links the detected entities to the DBPedia dataset. Then it downloads
+                all museums close to the detected places. In the last step in converts the output to the tabular data format CSV.
+            </p>
+            <pre># Named Entity Recognition
+https://api.freme-project.eu/current/e-entity/freme-ner/documents
+language=en
+dataset=dbpedia
+informat=text
+
+# Fetch Museums
+https://api.freme-project.eu/current/e-link/documents/
+templateid=1
+               
+# Convert to CSV
+https://api.freme-project.eu/current/toolbox/convert/documents/museums-nearby</pre>
+
+            <p>
+                A workflow consists of a series of processing steps called &quot;services&quot;. When the system processes
+                a text it will send it to the first service in the workflow. The workflow enriches the text with information. Then
+                the system sends the text including the enrichments to the next service. Each service adds more information. The
+                processing of a text terminates when all services where executed and added their information to the text. Usually
+                the output of the services is formated in the Natural Language Processing interchange format which is complicated
+                for further processing. Therefore it is possible to add a conversion to the tabular data format CSV in the last step.
+            </p>
+            <p>
+                The first line starts with #. This denotes a comment. So this line does not affect the workflow. 
+                You can use comments to leave a note to make the workflow more understandable for people.
+            </p>
+
+            <p>
+                The following four lines describe the first service that the workflow calls. This service is called FREME NER. The first line (starting with https://)
+                is a URL, similar to a website address. It denotes the API endpoint of the service. Similar to a website every service 
+                has a web address. The API endpoint is always the first line of a service definition. The following three lines denote the parameters for the service. &quot;language=en&quot; means that the parameter
+                &quot;language&quot; has value &quot;en&quot; which means English. More information about the parameters of the FREM NER Named Entity
+                Recognition service can be found in the respective part of the <a href="https://freme-project.github.io/api-doc/full.html#!/e-Entity/executeFremeNer"
+                target="_blank">API documentation</a> in section e-Entity, endpoint /e-entity/freme-ner/documents.
+            </p>
+
+            <p>
+                The empty line indicates that the definition of a service ends here. Afterwards two more services follow. The second service
+                is e-Link which downloads museums. The last service is the CSV converter. The last service does not have a parameter like the 
+                other services. In this case the parameter is in the address of the API endpoint. The API endpoint as stated in the documentation
+                is &quot;/toolbox/convert/documents/{name}&quot;. Therefore the name of the converter is decoded in the URL. More information on
+                CSV converter can be found in the following chapter.
+            </p>
+
+            <h3 id="services">Available services</h3>
+
+            <p>Currently the following services are available. You can find more information about the services in the <a href="https://freme-project.github.io/api-doc/full.html#!/e-Entity/executeFremeNer"
+                target="_blank">FREME API documentation</a></p>
+
+            <ul>
+                <li>
+                    <strong>FREME NER</strong><br/>
+                    API Endpoint: https://api.freme-project.eu/current/e-entity/freme-ner/documents
+                    <p>
+                        Performs Named Entity Recognition. Further it can link the entities to their DBPedia IDs 
+                        for further enrichment with the Linked Open Data Cloud.</p>
+                </li>
+                <li>
+                        <strong>Tilde translation</strong><br/>
+                        API Endpoint: https://api.freme-project.eu/current/e-translation/tilde
+                        <p>
+                            The Tilde e-Translation service translates text from and to various languages using the Tilde Terminology service.
+                            The available language pairs can be found on the <a href="https://services.tilde.com/translationsystems" target="_blank">Tilde
+                            website</a>. To the time of writing these are:
+                            <ul>
+                                <li>Dutch (nl) -> French (fr)</li>
+                                <li>Dutch (nl) -> German (de)</li>
+                            </ul>
+                            The tilde services often need some time to warm up. So if it does not work at first and the services responds with &quot;please
+                            try again later&quot; then please try again one or two minutes later.
+                        </p>
+                    </li>
+                <li>
+                    <strong>Tilde terminology</strong><br/>
+                    API Endpoint: https://api.freme-project.eu/current/e-terminology/tilde
+                    <p>
+                        The Tilde e-Terminology service annotates text with terminology information using the Tilde Terminology service.
+                    </p>
+                </li>
+                <li>
+                        <strong>e-Link</strong><br/>
+                        API Endpoint: https://api.freme-project.eu/current/e-entity/freme-ner/documents
+                        <p>
+                            Enrich data with contents from the Linked Open Data cloud. You can find more information on the e-Link service
+                            in the <a href="https://freme-project.github.io/tutorials/getting-started-with-e-link.html" target="_blank">
+                            Getting started with e-Link tutorial</a>. A list of available conversion templates can be retrieved via an API call. An incomplete
+                            list is available in the <a href="https://freme-project.github.io/api-doc/list-templates.html" target="_blank">
+                            List of enrichment templates.</a> 
+                        </p>
+                </li>
+                <li>
+                        <strong>CSV Converter</strong><br/>
+                        API Endpoint: https://api.freme-project.eu/current/toolbox/convert/documents/{name}
+                        <p>
+                            The postprocessing filters can be used to simplify FREMEs output. You can find a list of templates on this page
+                            in the &quot;CSV conversion&quot; tab. More technical information on these filters is located in the article 
+                            <a href="https://freme-project.github.io/knowledge-base/freme-for-api-users/filtering.html" target="_blank">
+                            Simplify FREME output using SPARQL filters</a>.
+                        </p>
+                </li>
+            </ul>
+
+            <h3 id="links">Important links</h3>
+            <ul>
+                <li>
+                    <a target="_blank" href="https://freme-project.github.io">FREME documentation homepage</a>
+                </li>
+                <li>
+                    <a target="_blank" href="#">https://freme-project.github.io/api-doc/full.html</a><br/>
+                    Lists all important FREME API endpoints.
+                </li>
+            </ul>
+
+            <h3 id="limitations">Known limitations</h3>
+            <ul>
+                <li>
+                    e-Entity can link entities to their DBpedia IDs. From there one can fetch additional information using the e-Link service.
+                    Currently fetching additional information from DBPedia works only with English content. Content in other languages gets linked
+                    to the wrong DBPedia IDs. 
+                </li>
+            </ul>
+        </div>
+        </div>
+   
+
+</body>
+</html>
